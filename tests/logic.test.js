@@ -51,6 +51,15 @@ test("planLayout keeps a short list on one A4 page", () => {
   assert.equal(plan.width, 595.28);
 });
 
+test("planLayout optionally numbers tasks from one within each section", () => {
+  const sections = [
+    { title: "Opening", items: [{ task: "Unlock" }, { task: "Lights" }] },
+    { title: "Closing", items: [{ task: "Lock" }] }
+  ];
+  const plan = L.planLayout(sections, { numberTasks: true });
+  assert.deepEqual(plan.pages[0].filter((row) => row.type === "item").map((row) => row.number), [1, 2, 1]);
+});
+
 test("planLayout paginates a long list and reports page geometry", () => {
   const items = Array.from({ length: 60 }, (_, i) => ({ task: "Task " + (i + 1), frequency: "" }));
   const plan = L.planLayout([{ title: "Big list", items }], { pageSize: "Letter" });
