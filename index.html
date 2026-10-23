@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checklist Print Forge: turn a Markdown or CSV task list into a printable checklist PDF</title>
+<meta name="description" content="Turn a Markdown or CSV task list into a printable daily or weekly checklist PDF with checkboxes, sections, frequency badges and sign-off lines. A4 or Letter, planned locally, lists saved in your browser.">
+<meta name="keywords" content="printable checklist maker from list, opening closing checklist generator, turn spreadsheet into checklist PDF, daily checklist template maker">
+<meta name="author" content="Amir Hussain">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://aamirtechs.github.io/checklist-print-forge/">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="theme-color" content="#0b1f3a">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Checklist Print Forge">
+<meta property="og:description" content="Turn a Markdown or CSV task list into a printable daily or weekly checklist PDF with checkboxes, sections, frequency badges and sign-off lines. A4 or Letter, planned locally, lists saved in your browser.">
+<meta property="og:url" content="https://aamirtechs.github.io/checklist-print-forge/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Checklist Print Forge">
+<meta name="twitter:description" content="Turn a Markdown or CSV task list into a printable daily or weekly checklist PDF with checkboxes, sections, frequency badges and sign-off lines. A4 or Letter, planned locally, lists saved in your browser.">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Checklist Print Forge","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"Amir Hussain","url":"https://aamirtechs.com"},"url":"https://aamirtechs.github.io/checklist-print-forge/"}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>:root{--navy:#0b1f3a;--navy2:#122c50;--gold:#d4a72c;--ink:#16233a;--muted:#5a6a84;--line:#e3e9f2;--bg:#f6f8fb;--card:#ffffff}
+*{box-sizing:border-box}body{margin:0;font-family:'Plus Jakarta Sans',Arial,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:44px 20px 36px;text-align:center}
+header h1{font-family:Sora,Arial,sans-serif;font-size:2rem;margin:0 0 10px}header h1 span{color:var(--gold)}
+header p{max-width:640px;margin:0 auto 14px;color:#dbe4f2}
+.stats{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}.stats span{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);padding:5px 12px;border-radius:999px;font-size:.85rem}
+main{max-width:920px;margin:-18px auto 30px;padding:0 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:0 6px 24px rgba(11,31,58,.07)}
+label{display:block;font-weight:700;margin:14px 0 6px;font-size:.92rem}
+input,select,textarea{width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;font:inherit;background:#fff}
+textarea{min-height:110px;font-family:ui-monospace,Menlo,monospace;font-size:.85rem}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:640px){.row{grid-template-columns:1fr}}
+.btn-run{background:var(--gold);color:var(--navy);border:0;padding:12px 22px;border-radius:9px;font-weight:800;font-size:1rem;cursor:pointer;margin-top:18px}
+.btn-dl{background:var(--navy);color:#fff;border:0;padding:10px 16px;border-radius:8px;font-weight:700;cursor:pointer;margin:10px 8px 0 0}
+.privacy{color:var(--muted);font-size:.88rem;margin-top:14px}
+.msg{margin-top:14px;font-weight:700}.err{color:#b3261e}
+table{width:100%;border-collapse:collapse;margin-top:14px;font-size:.9rem}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left}th{background:#eef3fa}
+section.info{max-width:920px;margin:0 auto 30px;padding:0 16px}section.info h2{font-family:Sora,Arial,sans-serif}
+footer{background:var(--navy);color:#cdd9ec;text-align:center;padding:26px 16px;font-size:.9rem}footer a{color:var(--gold)}
+pre.out{background:#0b1f3a;color:#e8eefc;padding:14px;border-radius:10px;overflow:auto;max-height:300px;font-size:.82rem;white-space:pre-wrap}
+.best{background:#fdf3d7;font-weight:700}.flag{color:#b3261e;font-weight:700}mark{background:#ffe58a}</style>
+</head>
+<body>
+<header>
+<h1>Checklist <span>Print Forge</span></h1>
+<p>Turn a Markdown or CSV task list into a printable daily/weekly checklist PDF with checkboxes, sections and sign-off lines.</p>
+<div class="stats"><span>Free</span><span>100% in your browser</span><span>No sign-up</span></div>
+</header>
+<main>
+<div class="card">
+
+<div class="row">
+<div><label for="format">Input format</label><select id="format"><option value="md">Markdown task list</option><option value="csv">CSV (section, task, frequency)</option></select></div>
+<div><label for="pageSize">Page size</label><select id="pageSize"><option value="A4">A4</option><option value="Letter">Letter</option></select></div>
+</div>
+<label for="title">Checklist title</label>
+<input id="title" value="Store opening and closing checklist">
+<label for="data">Your list</label>
+<textarea id="data"># Opening
+- [ ] Unlock the front door
+- [ ] Switch on lights (daily)
+- [ ] Check the till float
+## Closing
+- [ ] Clean counters (daily)
+- [ ] Deep clean the fridge (weekly)
+- [ ] Lock up and set the alarm</textarea>
+<label for="listName">Saved list name (stored only in this browser)</label>
+<input id="listName" value="My checklist">
+<button class="btn-run" id="run">Preview the print plan</button>
+<button class="btn-dl" id="save">Save list in this browser</button>
+<button class="btn-dl" id="load">Load saved list</button>
+
+<p class="privacy">Runs 100% in your browser. Your files never leave this device.</p>
+<div class="msg" id="msg"></div>
+<div id="results"></div>
+</div>
+</main>
+<section class="info">
+<h2>How it works</h2>
+<ul>
+<li>Paste a Markdown list (- [ ] items, headings become sections) or CSV rows (section, task, frequency).</li>
+<li>Print layout is planned for A4 or Letter with sections grouped and pages counted before you print.</li>
+<li>Frequency badges mark daily and weekly tasks on the sheet.</li>
+<li>Every page carries a date line plus completed-by and sign-off footer lines.</li>
+<li>Export a print-ready PDF via pdf-lib, and save lists in your browser with localStorage.</li>
+</ul>
+</section>
+<footer>
+<p>Built by Amir Hussain, operations manager and founder of <a href="https://aamirtechs.com" target="_blank" rel="noopener">AamirTechs: operations, customer support and e-commerce services</a>.</p>
+<p><a href="https://github.com/aamirtechs" target="_blank" rel="noopener">More open source tools on GitHub</a></p>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script src="src/logic.js"></script>
+<script>
+function download(name, text, type) {
+  var blob = new Blob([text], { type: type || "text/plain;charset=utf-8" });
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(blob); a.download = name; a.click();
+  setTimeout(function(){ URL.revokeObjectURL(a.href); }, 500);
+}
+function esc(s) { return String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+
+var L = window.ChecklistPrintForge;
+var lastSections = null, lastPlan = null;
+function getSections() {
+  var text = document.getElementById("data").value;
+  return document.getElementById("format").value === "csv" ? L.parseCSVList(text) : L.parseMarkdownList(text);
+}
+document.getElementById("run").addEventListener("click", function () {
+  var msg = document.getElementById("msg"); var res = document.getElementById("results");
+  msg.textContent = ""; msg.className = "msg"; res.innerHTML = "";
+  lastSections = getSections();
+  if (!lastSections.length || !lastSections.some(function (s) { return s.items.length; })) {
+    msg.textContent = "No tasks found. Use - [ ] lines or CSV rows."; msg.className = "msg err"; return;
+  }
+  lastPlan = L.planLayout(lastSections, { pageSize: document.getElementById("pageSize").value });
+  var s = L.summariseChecklist(lastSections);
+  var html = "<p><strong>" + s.totalItems + " tasks</strong> in " + s.sections + " sections, planned over <strong>" + lastPlan.pageCount + " page(s)</strong> (" + lastPlan.pageSize + ").</p>";
+  lastPlan.pages.forEach(function (pg, pi) {
+    html += "<h3>Page " + (pi + 1) + "</h3><table>";
+    pg.forEach(function (row) {
+      if (row.type === "section") html += "<tr><th colspan=\"3\">" + esc(row.title) + "</th></tr>";
+      else html += "<tr><td style=\"width:28px\">&#9744;</td><td>" + esc(row.task) + "</td><td>" + esc(L.frequencyBadge(row)) + "</td></tr>";
+    });
+    html += "</table>";
+  });
+  html += '<button class="btn-dl" id="dlPdf">Download print-ready PDF</button>';
+  res.innerHTML = html;
+  document.getElementById("dlPdf").addEventListener("click", buildPdf);
+  msg.textContent = "Print plan ready.";
+});
+document.getElementById("save").addEventListener("click", function () {
+  var name = document.getElementById("listName").value || "My checklist";
+  localStorage.setItem("cpf:" + name, document.getElementById("data").value);
+  document.getElementById("msg").textContent = "Saved '" + name + "' in this browser.";
+});
+document.getElementById("load").addEventListener("click", function () {
+  var name = document.getElementById("listName").value || "My checklist";
+  var saved = localStorage.getItem("cpf:" + name);
+  var msg = document.getElementById("msg");
+  if (saved) { document.getElementById("data").value = saved; msg.textContent = "Loaded '" + name + "'."; }
+  else { msg.textContent = "No saved list named '" + name + "' in this browser."; msg.className = "msg err"; }
+});
+async function buildPdf() {
+  var plan = lastPlan;
+  var pdfDoc = await PDFLib.PDFDocument.create();
+  var font = await pdfDoc.embedFont(PDFLib.StandardFonts.Helvetica);
+  var fontBold = await pdfDoc.embedFont(PDFLib.StandardFonts.HelveticaBold);
+  var title = document.getElementById("title").value || "Checklist";
+  var today = new Date().toISOString().slice(0, 10);
+  plan.pages.forEach(function (rows) {
+    var pg = pdfDoc.addPage([plan.width, plan.height]);
+    var y = plan.height - plan.margin;
+    pg.drawText(title, { x: plan.margin, y: y, size: 16, font: fontBold });
+    y -= 20;
+    pg.drawText("Date: " + today, { x: plan.margin, y: y, size: 10, font: font });
+    y -= plan.headerHeight - 20;
+    rows.forEach(function (row) {
+      if (row.type === "section") {
+        pg.drawText(row.title, { x: plan.margin, y: y, size: 12, font: fontBold });
+        y -= plan.itemRowHeight + 2;
+      } else {
+        pg.drawRectangle({ x: plan.margin, y: y - 2, width: 10, height: 10, borderWidth: 1 });
+        var label = row.task + (L.frequencyBadge(row) ? "  [" + L.frequencyBadge(row) + "]" : "");
+        pg.drawText(label.slice(0, 95), { x: plan.margin + 16, y: y, size: 11, font: font });
+        y -= plan.itemRowHeight;
+      }
+    });
+    var fy = plan.margin + plan.footerHeight - 20;
+    pg.drawText("Completed by: ______________________    Sign-off: ______________________", { x: plan.margin, y: fy, size: 10, font: font });
+  });
+  var bytes = await pdfDoc.save();
+  download("checklist.pdf", new Blob([bytes], { type: "application/pdf" }), "application/pdf");
+}
+
+</script>
+</body>
+</html>
