@@ -56,6 +56,7 @@ pre.out{background:#0b1f3a;color:#e8eefc;padding:14px;border-radius:10px;overflo
 <div><label for="format">Input format</label><select id="format"><option value="md">Markdown task list</option><option value="csv">CSV (section, task, frequency)</option></select></div>
 <div><label for="pageSize">Page size</label><select id="pageSize"><option value="A4">A4</option><option value="Letter">Letter</option></select></div>
 </div>
+<label><input id="numberTasks" type="checkbox"> Number tasks within each section</label>
 <label for="title">Checklist title</label>
 <input id="title" value="Store opening and closing checklist">
 <label for="data">Your list</label>
@@ -116,14 +117,14 @@ document.getElementById("run").addEventListener("click", function () {
   if (!lastSections.length || !lastSections.some(function (s) { return s.items.length; })) {
     msg.textContent = "No tasks found. Use - [ ] lines or CSV rows."; msg.className = "msg err"; return;
   }
-  lastPlan = L.planLayout(lastSections, { pageSize: document.getElementById("pageSize").value });
+  lastPlan = L.planLayout(lastSections, { pageSize: document.getElementById("pageSize").value, numberTasks: document.getElementById("numberTasks").checked });
   var s = L.summariseChecklist(lastSections);
   var html = "<p><strong>" + s.totalItems + " tasks</strong> in " + s.sections + " sections, planned over <strong>" + lastPlan.pageCount + " page(s)</strong> (" + lastPlan.pageSize + ").</p>";
   lastPlan.pages.forEach(function (pg, pi) {
     html += "<h3>Page " + (pi + 1) + "</h3><table>";
     pg.forEach(function (row) {
       if (row.type === "section") html += "<tr><th colspan=\"3\">" + esc(row.title) + "</th></tr>";
-      else html += "<tr><td style=\"width:28px\">&#9744;</td><td>" + esc(row.task) + "</td><td>" + esc(L.frequencyBadge(row)) + "</td></tr>";
+      else html += "<tr><td style=\"width:28px\">&#9744;</td><td>" + (row.number ? esc(row.number + ". ") : "") + esc(row.task) + "</td><td>" + esc(L.frequencyBadge(row)) + "</td></tr>";
     });
     html += "</table>";
   });
@@ -164,7 +165,7 @@ async function buildPdf() {
         y -= plan.itemRowHeight + 2;
       } else {
         pg.drawRectangle({ x: plan.margin, y: y - 2, width: 10, height: 10, borderWidth: 1 });
-        var label = row.task + (L.frequencyBadge(row) ? "  [" + L.frequencyBadge(row) + "]" : "");
+        var label = (row.number ? row.number + ". " : "") + row.task + (L.frequencyBadge(row) ? "  [" + L.frequencyBadge(row) + "]" : "");
         pg.drawText(label.slice(0, 95), { x: plan.margin + 16, y: y, size: 11, font: font });
         y -= plan.itemRowHeight;
       }

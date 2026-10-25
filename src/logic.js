@@ -77,15 +77,20 @@ function planLayout(sections, opts) {
   const pages = [];
   let page = [];
   let used = 0;
+  let sectionItemNumber = 0;
   function pushPage() { if (page.length) pages.push(page); page = []; used = 0; }
   (sections || []).forEach((section) => {
+    sectionItemNumber = 0;
     const headerCost = sectionRowHeight;
     if (used + headerCost > usable && page.length) pushPage();
     page.push({ type: "section", title: section.title });
     used += headerCost;
     section.items.forEach((item) => {
+      sectionItemNumber++;
       if (used + itemRowHeight > usable && page.length) pushPage();
-      page.push({ type: "item", task: item.task, frequency: item.frequency || "", section: section.title });
+      const row = { type: "item", task: item.task, frequency: item.frequency || "", section: section.title };
+      if (o.numberTasks) row.number = sectionItemNumber;
+      page.push(row);
       used += itemRowHeight;
     });
   });
